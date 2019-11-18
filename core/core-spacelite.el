@@ -44,6 +44,7 @@
 (defun spacelite/init-evil ()
   (use-package
     evil)
+  (setq evil-want-C-i-jump nil) ;; necessary for org-mode
   (require 'evil)
   (evil-mode 1))
 
