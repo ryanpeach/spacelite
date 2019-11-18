@@ -26,6 +26,6 @@
 (defvar config-font-height 140)
 
 ;; enable only if you are using emacs-mac
-(defvar config-enable-ligatures t)
+(defvar config-enable-ligatures (eq system-type 'darwin))
 
 (provide 'core-config)

@@ -29,9 +29,13 @@
     helm-projectile) 
   (setq projectile-completion-system 'helm projectile-sort-order 'recentf
 	projectile-globally-ignored-directories (append '(".cache")))
-  (spacelite/set-leader-keys "pbd" 'projectile-kill-buffers "pf" 'helm-projectile-find-file "ph"
-    'helm-projectile "pp" 'helm-projectile-switch-project "ps" 'helm-projectile-ag "pr"
-    'helm-projectile-recentf) 
+  (spacelite/set-leader-keys
+    "pbd" 'projectile-kill-buffers
+    "pf" 'helm-projectile-find-file
+    "ph" 'helm-projectile
+    "pl" 'helm-projectile-switch-project
+    "p/" 'helm-projectile-ag
+    "pr" 'helm-projectile-recentf) 
   (projectile-global-mode))
 
 (provide 'spacelite-projectile)

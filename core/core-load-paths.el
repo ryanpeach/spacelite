@@ -22,8 +22,14 @@
 (defconst spacelite-utils-directory (expand-file-name (concat user-emacs-directory "utils/"))
   "Spacelite utils directory.")
 
+(defconst spacelite-private-directory (expand-file-name (concat user-emacs-directory "private/"))
+  "Spacelite private directory.")
 
-(mapc 'add-to-load-path `(,spacelite-core-directory ,spacelite-base-directory
-						    ,spacelite-lang-directory ,spacelite-utils-directory ,(concat
-										spacelite-core-directory
-										"libs/")))
+(mapc 'add-to-load-path `(,spacelite-core-directory
+                          ,spacelite-base-directory
+			  ,spacelite-lang-directory
+			  ,spacelite-utils-directory
+			  ,(concat spacelite-core-directory "libs/")
+			  ,spacelite-private-directory
+			  )
+		)

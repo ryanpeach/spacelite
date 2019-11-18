@@ -1,4 +1,6 @@
 # -*- mode: gitignore; -*-
+transient
+network-security.data
 *~
 \#*\#
 /.emacs.desktop

@@ -10,11 +10,13 @@
 (require 'spacelite-base)
 (require 'spacelite-langs)
 (require 'spacelite-utils)
+(require 'spacelite-private)
 
 (spacelite/init)
 (spacelite/init-base)
 (spacelite/init-langs)
 (spacelite/init-utils)
+(spacelite/init-private)
 
 (use-package exec-path-from-shell :defer t :config
 	(when (memq window-system '(mac ns x))

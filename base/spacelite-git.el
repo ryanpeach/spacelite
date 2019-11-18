@@ -12,9 +12,12 @@
     magit
     :diminish 'auto-revert-mode
     :defer t)
-  (spacelite/set-leader-keys "gb" 'magit-blame "gm" 'magit-dispatch-popup)
-  (setq auto-revert-buffer-list-filter 'magit-auto-revert-repository-buffers-p)
-  (custom-set-variables '(with-editor-emacsclient-executable "/usr/local/bin/emacsclient"))
+  (spacelite/set-leader-keys
+    "gb" 'magit-blame
+    "gm" 'magit-dispatch-popup
+    "gs" 'magit-status)
+  ;; (setq auto-revert-buffer-list-filter 'magit-auto-revert-repository-buffers-p)
+  (custom-set-variables '(with-editor-emacsclient-executable "/usr/bin/env emacsclient"))
   (use-package
     evil-magit
     :defer t))

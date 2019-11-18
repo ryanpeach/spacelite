@@ -7,11 +7,19 @@
 ;;
 ;;; License: GPLv3
 
-(require 'spacelite-scala)
 (require 'spacelite-markdown)
+(require 'writing)
+(require 'rustlang)
+(require 'cloudformation)
+(require 'python)
+(require 'spacelite-elisp)
 
 (defun spacelite/init-langs ()
-  (spacelite/init-scala)
-  (spacelite/init-markdown))
+  (spacelite/init-markdown)
+  (writing/init)
+  (rustlang/init)
+  (cloudformation/init)
+  (python/init-python)
+  (spacelite/init-elisp))
 
 (provide 'spacelite-langs)

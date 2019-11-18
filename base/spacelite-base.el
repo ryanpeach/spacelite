@@ -16,6 +16,7 @@
 (require 'spacelite-git)
 (require 'spacelite-osx)
 (require 'spacelite-shell)
+(require 'spacelite-default-keybindings)
 
 (defun spacelite/init-base ()
   (spacelite/init-evil-base)
@@ -26,6 +27,7 @@
   (spacelite/init-emacs)
   (spacelite/init-git)
   (spacelite/init-shell)
+  (spacelite/init-default-keybindings)
   (when (eq system-type 'darwin)
     (spacelite/init-osx)))
 

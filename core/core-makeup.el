@@ -11,8 +11,8 @@
   ;; hide column numbers
   (setq column-number-mode nil)
 
-  ;; always hightlight current line
-  (global-hl-line-mode t)
+  ;; don't hightlight current line
+  (global-hl-line-mode nil)
 
   ;; stop blinking!!
   (blink-cursor-mode 0)
@@ -68,7 +68,8 @@
 
 (defun spacelite//init-theme ()
   (use-package
-    solarized-theme :config (load-theme 'solarized-dark t))
+    monokai-theme
+    :config (load-theme 'monokai t))
 
   ;; face attributes for helm
   (eval-after-load 'helm

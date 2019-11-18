@@ -53,8 +53,7 @@
 	 (leaders (delq nil (list leader1 leader2)))) 
     (or (boundp prefix) 
 	(progn (eval `(bind-map ,map 
-			:prefix-cmd ,prefix ,(if minor 
-
+			:prefix-cmd ,prefix ,(if minor
 						 :minor-modes 
 					       :major-modes) 
 			(,mode) 
