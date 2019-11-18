@@ -1,5 +1,7 @@
 (package-initialize)
 
+(server-start)
+
 (load-file (concat (file-name-directory user-emacs-directory)
 	"core/core-load-paths.el"))
 
