@@ -1,10 +1,20 @@
+;; TODO: You might want to change this to your preferences
+(defvar spacelite/elisp-auto-format-on-save t 
+  "Automatically formats elisp code on save")
+
 (defun load-this-file () 
   (interactive) 
   (load-file (buffer-file-name)))
 
+(defun elisp-mode-p () 
+  (or (eq major-mode 'lisp-interaction-mode) 
+      (eq major-mode 'lisp-mode) 
+      (eq major-mode 'emacs-lisp-mode)))
+
 (defun elisp-format-this-file () 
   (interactive) 
-  (elisp-format-file (buffer-file-name)))
+  (when (elisp-mode-p) 
+    (elisp-format-file (buffer-file-name))))
 
 (defun spacelite/init-elisp ()
   ;; i for interactive toggle
@@ -23,6 +33,9 @@
     :defer t 
     :init (spacelite/set-leader-keys-for-major-mode 'emacs-lisp-mode "f" 'elisp-format-this-file) 
     (spacelite/set-leader-keys-for-major-mode 'lisp-mode "f" 'elisp-format-this-file) 
-    (spacelite/set-leader-keys-for-major-mode 'lisp-interaction-mode "f" 'elisp-format-this-file)))
+    (spacelite/set-leader-keys-for-major-mode 'lisp-interaction-mode "f" 'elisp-format-this-file)
+    (defun elisp-auto-format-on-save () 
+      (when spacelite/elisp-auto-format-on-save (elisp-format-this-file))) 
+    (add-hook 'before-save-hook 'elisp-auto-format-on-save)))
 
 (provide 'spacelite-elisp)
