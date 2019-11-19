@@ -7,6 +7,7 @@
 ;;
 ;;; License: GPLv3
 
+(require 'spacelite-packaging)
 (require 'spacelite-evil)
 (require 'spacelite-buffers)
 (require 'spacelite-windows)
@@ -19,6 +20,7 @@
 (require 'spacelite-default-keybindings)
 
 (defun spacelite/init-base ()
+  (spacelite/init-packaging)
   (spacelite/init-evil-base)
   (spacelite/init-buffers)
   (spacelite/init-windows)
