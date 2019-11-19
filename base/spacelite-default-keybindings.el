@@ -1,7 +1,6 @@
 (defun spacelite/init-default-keybindings ()
   (spacelite/declare-prefix "h" "help")
   (spacelite/set-leader-keys
-    ;; Automatically Set
 
     ;; Spacemacs like select windows
     "0" 'winum-select-window-0
@@ -33,11 +32,33 @@
     "jl" 'evilem-motion-next-line
     "jL" 'evilem-motion-previous-line))
 
+(defun prompt-desc-check (inp-prompt check-f err-prompt)
+  (interactive)
+  (let ((val (read-string inp-prompt)))
+    (if (check-f val)
+	val
+      (progn (read-string err-prompt)
+	     (prompt-desc-check inp-prompt check-f err-prompt)))
+    )
+  )
+
 (defun spacelite/create-keybinding ()
   (interactive)
-  (save-excursion
-    (search-forward "(defun spacelite/init-default-keybindings ()")
-    (insert (concat "\n(spacelite/set-leader-keys \"" keys "\" '" function ")"))
+  (let ((func (prompt-desc-check
+	       "Please provide a function name: "
+	       (lambda (x) (boundp (make-symbol x)))
+	       "Function does not exist, try again."))
+	(keys (prompt-desc-check
+	       "Please provide a key sequence: "
+	       (lambda (x) t)
+	       "")))
+    (save-excursion
+      (with-current-buffer (find-file-noselect "~/.emacs.d/base/spacelite-default-keybindings.el")
+	(search-forward "(defun spacelite/init-default-keybindings ()")
+	(insert (concat "\n(spacelite/set-leader-keys \"" keys "\" '" func ")"))
+	(spacelite/init-default-keybindings)
+	)
+      )
     )
   )
 
