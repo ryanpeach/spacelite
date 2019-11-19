@@ -1,4 +1,4 @@
-(defun spacelite/init-elisp ()
+(defun spacelite/init-python ()
   ;; TODO: Required for setting up your python environment
   (setq python-shell-interpreter "~/miniconda3/bin/ipython3") 
   (setq python-shell-interpreter-args "-i --simple-prompt")
@@ -45,4 +45,4 @@
     flycheck 
     :defer t))
 
-(provide 'spacelite-elisp)
+(provide 'spacelite-python)

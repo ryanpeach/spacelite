@@ -1,6 +1,7 @@
 (defun spacelite/init-default-keybindings ()
   (spacelite/declare-prefix "h" "help")
   (spacelite/set-leader-keys
+    ;; Automatically Set
 
     ;; Spacemacs like select windows
     "0" 'winum-select-window-0
@@ -31,5 +32,9 @@
     "jJ" 'evilem-motion-find-previous-char
     "jl" 'evilem-motion-next-line
     "jL" 'evilem-motion-previous-line))
+
+(defun spacelite/create-keybinding ()
+  (interactive)
+  )
 
 (provide 'spacelite-default-keybindings)

@@ -11,7 +11,7 @@
 (require 'writing)
 (require 'rustlang)
 (require 'cloudformation)
-(require 'python)
+(require 'spacelite-python)
 (require 'spacelite-elisp)
 
 (defun spacelite/init-langs ()
@@ -19,7 +19,7 @@
   (writing/init)
   (rustlang/init)
   (cloudformation/init)
-  (python/init-python)
+  (spacelite/init-python)
   (spacelite/init-elisp))
 
 (provide 'spacelite-langs)
