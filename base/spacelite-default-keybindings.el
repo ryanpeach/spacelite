@@ -35,6 +35,10 @@
 
 (defun spacelite/create-keybinding ()
   (interactive)
+  (save-excursion
+    (search-forward "(defun spacelite/init-default-keybindings ()")
+    (insert (concat "\n(spacelite/set-leader-keys \"" keys "\" '" function ")"))
+    )
   )
 
 (provide 'spacelite-default-keybindings)

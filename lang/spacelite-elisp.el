@@ -39,19 +39,19 @@
 
   (add-hook 'before-save-hook 'elisp-auto-format-on-save)
 
-  (use-package aggressive-indent
-    :defer t
-    :init
-    (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode)
-    (add-hook 'lisp-mode-hook #'aggressive-indent-mode)
-    (add-hook 'lisp-interaction-mode-hook #'aggressive-indent-mode)
-    )
+  ;; (use-package aggressive-indent
+  ;;   :defer t
+  ;;   :init
+  ;;   (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode)
+  ;;   (add-hook 'lisp-mode-hook #'aggressive-indent-mode)
+  ;;   (add-hook 'lisp-interaction-mode-hook #'aggressive-indent-mode)
+  ;;   )
 
-  (use-package lispy
-    :defer t
-    :init
-    (add-hook 'emacs-lisp-mode-hook (lambda () (lispy-mode 1)))
-    )
+  ;; (use-package lispy
+  ;;   :defer t
+  ;;   :init
+  ;;   (add-hook 'emacs-lisp-mode-hook (lambda () (lispy-mode 1)))
+  ;;   )
 
   )
 
