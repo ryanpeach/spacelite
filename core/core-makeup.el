@@ -31,9 +31,11 @@
 
   ;; font
   (set-face-attribute 'default nil
-		      :family config-font-family
-		      :height config-font-height)
-  (set-frame-parameter nil 'fullscreen 'fullboth)
+                      :family config-font-family
+                      :height config-font-height)
+
+  ;; set always fullscreen
+  ;; (set-frame-parameter nil 'fullscreen 'fullboth)
 
   (spacelite//init-theme)
   (spacelite//init-spaceline)
@@ -75,7 +77,7 @@
   (eval-after-load 'helm
     (lambda ()
       (set-face-attribute
-        'helm-selection nil :background "#268bd2" :underline nil :foreground "black"))))
+       'helm-selection nil :background "#268bd2" :underline nil :foreground "black"))))
 
 (defun spacelite//init-spaceline ()
   (setq-default
@@ -90,20 +92,20 @@
   (use-package spaceline :ensure t)
 
   (use-package spaceline-config :ensure spaceline
-     :config
-     (spaceline-helm-mode 1)
-     (spaceline-emacs-theme))
+    :config
+    (spaceline-helm-mode 1)
+    (spaceline-emacs-theme))
   (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
   (spaceline-compile "spacelite" '(
-				   (window-number :face highlight-face)
-				   (buffer-modified)
-				   (line-column)
-				   (anzu :priority 4)
-				   (major-mode)
-				   (process :when active)
-				   (minor-modes :when active)
-				   (version-control :when active)
-				   ) '(buffer-position buffer-id :seperator "|"))
+                                   (window-number :face highlight-face)
+                                   (buffer-modified)
+                                   (line-column)
+                                   (anzu :priority 4)
+                                   (major-mode)
+                                   (process :when active)
+                                   (minor-modes :when active)
+                                   (version-control :when active)
+                                   ) '(buffer-position buffer-id :seperator "|"))
   (setq-default mode-line-format '("%e" (:eval (spaceline-ml-spacelite)))))
 
 (provide 'core-makeup)

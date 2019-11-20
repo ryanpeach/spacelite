@@ -1,4 +1,5 @@
 (defun spacelite/init-default-keybindings ()
+  (spacelite/set-leader-keys "ck" 'spacelite/create-keybinding)
   (spacelite/declare-prefix "h" "help")
   (spacelite/set-leader-keys
 
@@ -35,29 +36,31 @@
 (defun prompt-desc-check (inp-prompt check-f err-prompt)
   (interactive)
   (let ((val (read-string inp-prompt)))
-    (if (check-f val)
-	val
+    (if (funcall check-f val)
+        val
       (progn (read-string err-prompt)
-	     (prompt-desc-check inp-prompt check-f err-prompt)))
+             (prompt-desc-check inp-prompt check-f err-prompt)))
     )
   )
 
 (defun spacelite/create-keybinding ()
   (interactive)
   (let ((func (prompt-desc-check
-	       "Please provide a function name: "
-	       (lambda (x) (boundp (make-symbol x)))
-	       "Function does not exist, try again."))
-	(keys (prompt-desc-check
-	       "Please provide a key sequence: "
-	       (lambda (x) t)
-	       "")))
+               "Please provide a function name: "
+               (lambda (x) (fboundp (intern x)))
+               "Function does not exist, try again."))
+        (keys (prompt-desc-check
+               "Please provide a key sequence: "
+               (lambda (x) t)
+               "")))
     (save-excursion
       (with-current-buffer (find-file-noselect "~/.emacs.d/base/spacelite-default-keybindings.el")
-	(search-forward "(defun spacelite/init-default-keybindings ()")
-	(insert (concat "\n(spacelite/set-leader-keys \"" keys "\" '" func ")"))
-	(spacelite/init-default-keybindings)
-	)
+        (beginning-of-buffer)
+        (search-forward "(defun spacelite/init-default-keybindings ()")
+        (insert (concat "\n(spacelite/set-leader-keys \"" keys "\" '" func ")"))
+        (save-current-buffer)
+        (spacelite/init-default-keybindings)
+        )
       )
     )
   )

@@ -1,9 +1,11 @@
 (package-initialize)
 
-(server-start)
+(require 'server)
+(or (server-running-p)
+    (server-start))
 
 (load-file (concat (file-name-directory user-emacs-directory)
-		   "core/core-load-paths.el"))
+                   "core/core-load-paths.el"))
 
 (setq use-package-always-ensure t)
 (setq gc-cons-threshold most-positive-fixnum)

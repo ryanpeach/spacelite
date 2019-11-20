@@ -4,8 +4,8 @@
   (save-excursion
     (end-of-line)
     (when (not (eq (char-before) ?\;))
-        (insert ";")
-        )
+      (insert ";")
+      )
     )
   )
 
@@ -33,7 +33,7 @@
   "Toggle semicolon at the end of this line."
   (interactive)
   (if (line-ends-in-p ?\;)
-    (delete-char 1)
+      (delete-char 1)
     (insert ";")
     )
   )
@@ -46,31 +46,41 @@
          (not (-any-p '(lambda (y) (eq (char-after) y)) allowed-chars))
          (not (-any-p '(lambda (y) (eq (char-before) y)) allowed-chars))
          (y-or-n-p "Did you forget a semicolon? ")
-       )
+         )
     )
   )
 
 (defun rustlang/init ()
-  ;; Add hooks and keybindings
-  ;; Newline and indent on semicolon
-  (evil-define-key 'insert rust-mode-map (kbd "RET") (lambda () (interactive)
-						       (when (rustlang/filter-semicolon-event-p)
-							 (rustlang/add-semicolon))
-						       (newline-and-indent)
-						       )
+  (use-package racer
+    :defer t)
+
+  (use-package rust-mode
+    :defer t
+    :init
+    ;; Add hooks and keybindings
+    ;; Newline and indent on semicolon
+    (evil-define-key 'insert rust-mode-map (kbd "RET") (lambda () (interactive)
+                                                         (when (rustlang/filter-semicolon-event-p)
+                                                           (rustlang/add-semicolon))
+                                                         (newline-and-indent)
+                                                         )
+      )
+    (evil-define-key 'insert rust-mode-map (kbd "<S-return>") 'newline-and-indent)
+    (evil-define-key 'insert rust-mode-map ";" (lambda () (interactive)
+                                                 (rustlang/add-semicolon)
+                                                 (newline-and-indent)
+                                                 )
+      )
+    (evil-define-key 'insert rust-mode-map (kbd "C-;") (lambda () (interactive)
+                                                         (rustlang/add-semicolon-at-the-end-of-this-line)
+                                                         (newline-and-indent)
+                                                         )
+      )
+    (evil-define-key 'insert rust-mode-map (kbd "M-;") 'rustlang/toggle-semicolon-at-the-end-of-this-line)
+    :config
+    (add-hook 'rust-mode-hook #'racer-mode)
+    (add-hook 'racer-mode-hook #'eldoc-mode)
     )
-  (evil-define-key 'insert rust-mode-map (kbd "<S-return>") 'newline-and-indent)
-  (evil-define-key 'insert rust-mode-map ";" (lambda () (interactive)
-					       (rustlang/add-semicolon)
-					       (newline-and-indent)
-					       )
-    )
-  (evil-define-key 'insert rust-mode-map (kbd "C-;") (lambda () (interactive)
-						       (rustlang/add-semicolon-at-the-end-of-this-line)
-						       (newline-and-indent)
-						       )
-    )
-  (evil-define-key 'insert rust-mode-map (kbd "M-;") 'rustlang/toggle-semicolon-at-the-end-of-this-line)
   )
 
 (provide 'rustlang)

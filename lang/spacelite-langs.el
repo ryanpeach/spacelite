@@ -7,6 +7,7 @@
 ;;
 ;;; License: GPLv3
 
+(require 'spacelite-bash)
 (require 'spacelite-markdown)
 (require 'writing)
 (require 'rustlang)
@@ -15,6 +16,7 @@
 (require 'spacelite-elisp)
 
 (defun spacelite/init-langs ()
+  (spacelite/init-bash)
   (spacelite/init-markdown)
   (writing/init)
   (rustlang/init)
