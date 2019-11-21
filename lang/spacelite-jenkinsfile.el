@@ -69,6 +69,9 @@
       "Major mode for editing Jenkins declarative pipeline files."
       (setq font-lock-defaults '(jenkinsfile-mode-font-lock-defaults)))
     )
+
+  (add-to-list 'auto-mode-alist '("Jenkinsfile\\'" . jenkinsfile-mode))
+  (add-to-list 'auto-mode-alist '("\\.groovy\\'" . groovy-mode))
   )
 
 (provide 'spacelite-jenkinsfile)

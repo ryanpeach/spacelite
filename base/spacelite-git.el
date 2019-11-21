@@ -16,8 +16,9 @@
     "gb" 'magit-blame
     "gm" 'magit-dispatch-popup
     "gs" 'magit-status)
-  (evil-define-key evil-magit-state magit-mode-map "p" 'magit-push)
   (add-hook 'git-commit-mode-hook 'evil-insert-state)
+  ;; TODO: This isn't working either
+  (evil-define-key evil-magit-state magit-mode-map "p" 'magit-push)
   ;; TODO: Not sure why this isn't working
   ;; (add-hook 'with-editor-mode-hook 'evil-normalize-keymaps)
   ;; (let ((mm-key config-major-mode-leader-key))
