@@ -17,6 +17,7 @@
     "gm" 'magit-dispatch-popup
     "gs" 'magit-status)
   (evil-define-key evil-magit-state magit-mode-map "p" 'magit-push)
+  (add-hook 'git-commit-mode-hook 'evil-insert-state)
   (add-hook 'with-editor-mode-hook 'evil-normalize-keymaps)
   (let ((mm-key config-major-mode-leader-key))
     (dolist (state '(normal motion))
