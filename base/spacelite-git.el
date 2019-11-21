@@ -16,8 +16,15 @@
     "gb" 'magit-blame
     "gm" 'magit-dispatch-popup
     "gs" 'magit-status)
-  ;; (setq auto-revert-buffer-list-filter 'magit-auto-revert-repository-buffers-p)
-  (custom-set-variables '(with-editor-emacsclient-executable "/usr/bin/env emacsclient"))
+  (evil-define-key evil-magit-state magit-mode-map "p" 'magit-push)
+  (add-hook 'with-editor-mode-hook 'evil-normalize-keymaps)
+  (let ((mm-key config-major-mode-leader-key))
+    (dolist (state '(normal motion))
+      (evil-define-key state with-editor-mode-map
+        (concat mm-key mm-key) 'with-editor-finish
+        (concat mm-key "a")    'with-editor-cancel
+        (concat mm-key "c")    'with-editor-finish
+        (concat mm-key "k")    'with-editor-cancel)))
   (use-package
     evil-magit
     :defer t))

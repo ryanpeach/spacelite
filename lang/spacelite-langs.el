@@ -7,6 +7,7 @@
 ;;
 ;;; License: GPLv3
 
+(require 'spacelite-jenkinsfile)
 (require 'spacelite-bash)
 (require 'spacelite-markdown)
 (require 'writing)
@@ -16,6 +17,8 @@
 (require 'spacelite-elisp)
 
 (defun spacelite/init-langs ()
+  (spacelite/init-jenkinsfile)
+
   (spacelite/init-bash)
   (spacelite/init-markdown)
   (writing/init)

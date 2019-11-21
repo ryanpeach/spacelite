@@ -1,19 +1,32 @@
+(defalias 'win-0 'winum-select-window-0)
+(defalias 'win-1 'winum-select-window-1)
+(defalias 'win-2 'winum-select-window-2)
+(defalias 'win-3 'winum-select-window-3)
+(defalias 'win-4 'winum-select-window-4)
+(defalias 'win-5 'winum-select-window-5)
+(defalias 'win-6 'winum-select-window-6)
+(defalias 'win-7 'winum-select-window-7)
+(defalias 'win-8 'winum-select-window-8)
+(defalias 'win-9 'winum-select-window-9)
+
 (defun spacelite/init-default-keybindings ()
-  (spacelite/set-leader-keys "ck" 'spacelite/create-keybinding)
+  (spacelite/declare-prefix "e" "emacs")
+  (spacelite/set-leader-keys "ek" 'spacelite/create-keybinding)
+
   (spacelite/declare-prefix "h" "help")
   (spacelite/set-leader-keys
 
     ;; Spacemacs like select windows
-    "0" 'winum-select-window-0
-    "1" 'winum-select-window-1
-    "2" 'winum-select-window-2
-    "3" 'winum-select-window-3
-    "4" 'winum-select-window-4
-    "5" 'winum-select-window-5
-    "6" 'winum-select-window-6
-    "7" 'winum-select-window-7
-    "8" 'winum-select-window-8
-    "9" 'winum-select-window-9
+    "0" 'win-0
+    "1" 'win-1
+    "2" 'win-2
+    "3" 'win-3
+    "4" 'win-4
+    "5" 'win-5
+    "6" 'win-6
+    "7" 'win-7
+    "8" 'win-8
+    "9" 'win-9
 
     ;; Tmux like split windows
     "w%" 'split-window-vertically
@@ -58,7 +71,7 @@
         (beginning-of-buffer)
         (search-forward "(defun spacelite/init-default-keybindings ()")
         (insert (concat "\n(spacelite/set-leader-keys \"" keys "\" '" func ")"))
-        (save-current-buffer)
+        (save-buffer)
         (spacelite/init-default-keybindings)
         )
       )
