@@ -1,7 +1,10 @@
 (defun spacelite/init-org ()
   (use-package
     org
-    :defer t)
+    :defer t
+    :init
+    (spacelite/set-leader-keys-for-major-mode 'org-mode "a" 'org-agenda)
+    )
   (use-package htmlize)
   (use-package
     evil-org

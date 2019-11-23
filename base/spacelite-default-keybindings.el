@@ -13,6 +13,7 @@
   (spacelite/declare-prefix "e" "emacs")
   (spacelite/set-leader-keys "ek" 'spacelite/create-keybinding)
 
+
   (spacelite/declare-prefix "h" "help")
   (spacelite/set-leader-keys
 
@@ -72,6 +73,7 @@
         (search-forward "(defun spacelite/init-default-keybindings ()")
         (insert (concat "\n(spacelite/set-leader-keys \"" keys "\" '" func ")"))
         (save-buffer)
+        (load-file "~/.emacs.d/base/spacelite-default-keybindings.el")
         (spacelite/init-default-keybindings)
         )
       )
