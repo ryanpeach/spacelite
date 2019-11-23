@@ -72,6 +72,7 @@
 (defun spacelite//init-theme ()
   (use-package
     monokai-theme
+    :ensure t
     :config (load-theme 'monokai t))
 
   ;; face attributes for helm
