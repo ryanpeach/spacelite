@@ -1,3 +1,4 @@
+(require 'spacelite-yasnippet)
 (require 'spacelite-org)
 (require 'spacelite-google)
 (require 'spacelite-deft)
@@ -5,6 +6,7 @@
 (require 'spacelite-evil-easymotion)
 
 (defun spacelite/init-utils ()
+  (spacelite/init-yasnippet)
   (spacelite/init-org)
   (spacelite/init-google)
   (spacelite/init-deft)

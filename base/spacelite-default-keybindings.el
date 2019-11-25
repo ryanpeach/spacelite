@@ -10,8 +10,10 @@
 (defalias 'win-9 'winum-select-window-9)
 
 (defun spacelite/init-default-keybindings ()
+  (spacelite/set-leader-keys "pg" 'helm-grep-do-git-grep)
   (spacelite/declare-prefix "e" "emacs")
   (spacelite/set-leader-keys "ek" 'spacelite/create-keybinding)
+  (spacelite/set-leader-keys "er" 'spacelite/reload-file)
 
 
   (spacelite/declare-prefix "h" "help")
@@ -46,6 +48,13 @@
     "jJ" 'evilem-motion-find-previous-char
     "jl" 'evilem-motion-next-line
     "jL" 'evilem-motion-previous-line))
+
+(defun spacelite/reload-file ()
+  "Reloads the current file."
+  (interactive)
+  (save-buffer)
+  (load-file (buffer-name))
+  (load-file user-init-file))
 
 (defun prompt-desc-check (inp-prompt check-f err-prompt)
   (interactive)

@@ -4,6 +4,16 @@
     :defer t
     :init
     (spacelite/set-leader-keys-for-major-mode 'org-mode "a" 'org-agenda)
+    (org-modules '(org-bbdb
+                   org-bibtex
+                   org-crypt
+                   org-docview
+                   org-gnus
+                   org-habit
+                   org-info
+                   org-mhe
+                   org-w3m))
+
     )
   (use-package htmlize)
   (use-package

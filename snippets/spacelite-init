@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: spacelite/init
+# key: spacelite/init
+# --
+(defun spacelite/init-$0 ()
+  (use-package $1
+    :defer t
+    :init
+    :config
+    )
+  )
+
+(provide 'spacelite-$0)

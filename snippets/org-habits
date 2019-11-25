@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: org-habits
+# key: habit
+# --
+SCHEDULED: <$1 $0>
+:PROPERTIES:
+:STYLE:    habit
+:LAST_REPEAT: $2
+:END:
