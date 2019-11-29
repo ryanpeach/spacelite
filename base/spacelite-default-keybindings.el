@@ -10,6 +10,7 @@
 (defalias 'win-9 'winum-select-window-9)
 
 (defun spacelite/init-default-keybindings ()
+  (spacelite/set-leader-keys "bs" 'save-buffer)
   (spacelite/set-leader-keys "pg" 'helm-grep-do-git-grep)
   (spacelite/declare-prefix "e" "emacs")
   (spacelite/set-leader-keys "ek" 'spacelite/create-keybinding)
