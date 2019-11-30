@@ -18,16 +18,15 @@
 (require 'spacelite-elisp)
 
 (defun spacelite/init-langs ()
-  (spacelite/init-haskell)
-
-  (spacelite/init-jenkinsfile)
-
-  (spacelite/init-bash)
-  (spacelite/init-markdown)
-  (writing/init)
-  (rustlang/init)
-  (cloudformation/init)
-  (spacelite/init-python)
-  (spacelite/init-elisp))
-
+  (add-hook 'haskell-mode-hook 'spacelite/init-haskell)
+  (add-hook 'groovy-mode-hook 'spacelite/init-jenkinsfile)
+  (add-hook 'shell-mode-hook 'spacelite/init-bash)
+  (add-hook 'markdown-mode-hook 'spacelite/init-markdown)
+  (add-hook 'rust-mode-hook 'rustlang/init)
+  (add-hook 'yaml-mode-hook 'cloudformation/init)
+  (add-hook 'python-mode-hook 'spacelite/init-python)
+  (add-hook 'emacs-lisp-mode-hook 'spacelite/init-elisp)
+  (add-hook 'org-mode-hook 'writing/init)
+  (add-hook 'text-mode-hook 'writing/init)
+  )
 (provide 'spacelite-langs)

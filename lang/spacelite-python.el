@@ -5,7 +5,7 @@
   (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 
   ;; Comment with ;
-  (evil-define-key 'normal rust-mode-map (kbd ";") 'comment-line)
+  (evil-define-key 'normal python-mode-map (kbd ";") 'comment-line)
 
   ;; Flycheck
   (use-package
