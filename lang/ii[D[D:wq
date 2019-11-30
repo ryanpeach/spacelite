@@ -18,16 +18,16 @@
 (require 'spacelite-elisp)
 
 (defun lazy-load (mode f)
-  (add-hook mode f)
+  (add-hook mode (intern (symbol-value f)))
 
   ;; Remove the hook on first load
-  (add-hook mode `(lambda ()
-                   (when (member (quote ,f) ,mode)
-                     (remove-hook (quote ,mode) (quote ,f)))
+  (add-hook mode (lambda ()
+                   (when (member (intern (symbol-value f)) mode)
+                     (remove-hook mode (intern (symbol-value f)))
+                     )
                    )
             )
   )
-
 
 (defun spacelite/init-langs ()
   (lazy-load 'haskell-mode-hook 'spacelite/init-haskell)

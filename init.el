@@ -25,8 +25,8 @@
 
 (spacelite/init)
 (spacelite/init-base)
-(spacelite/init-langs)
 (spacelite/init-utils)
+(spacelite/init-langs)
 (spacelite/init-private)
 
 (use-package exec-path-from-shell :defer t :config
