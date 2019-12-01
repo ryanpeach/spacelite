@@ -57,6 +57,7 @@
     :diminish 'linum-relative-mode
     :init (setq linum-relative-current-symbol "")
     :config (linum-relative-global-mode))
+
   (use-package
     centered-cursor-mode
     :config (global-centered-cursor-mode)
@@ -73,13 +74,17 @@
   (use-package
     monokai-theme
     :ensure t
-    :config (load-theme 'monokai t))
+    :demand t
+    :config
+    (load-theme 'monokai t)
+    )
 
   ;; face attributes for helm
   (eval-after-load 'helm
     (lambda ()
       (set-face-attribute
-       'helm-selection nil :background "#268bd2" :underline nil :foreground "black"))))
+       'helm-selection nil :background "#268bd2" :underline nil :foreground "black")))
+  )
 
 (defun spacelite//init-spaceline ()
   (setq-default
