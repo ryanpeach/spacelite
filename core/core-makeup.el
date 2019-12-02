@@ -76,6 +76,12 @@
     :ensure t
     :demand t
     :config
+
+    (setq
+     monokai-background "#282828"
+     monokai-foreground "#F8F8F2"
+     )
+
     (load-theme 'monokai t)
     )
 
@@ -83,13 +89,13 @@
   (eval-after-load 'helm
     (lambda ()
       (set-face-attribute
-       'helm-selection nil :background "#268bd2" :underline nil :foreground "black")))
+       'helm-selection nil :background "#282828" :underline nil :foreground "white")))
   )
 
 (defun spacelite//init-spaceline ()
   (setq-default
    powerline-height 24
-   powerline-default-separator 'wave)
+   powerline-default-separator 'arrow)
 
   ;; prevent winum to insert windows numbers to mode line
   (setq winum-auto-setup-mode-line nil)
