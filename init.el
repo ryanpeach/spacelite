@@ -33,9 +33,6 @@
   (when (memq window-system '(mac ns x))
     (exec-path-from-shell-initialize)))
 
-(set-frame-parameter (selected-frame) 'alpha '(85 . 50))
-(add-to-list 'default-frame-alist '(alpha . (85 . 50)))
-
 ;; REF: https://emacs.stackexchange.com/questions/23773/disable-scrollbar-on-new-frame
 (defun my/disable-scroll-bars (frame)
   (modify-frame-parameters frame
