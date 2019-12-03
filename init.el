@@ -13,7 +13,8 @@
 (load-file (concat (file-name-directory user-emacs-directory)
                    "core/core-load-paths.el"))
 
-(setq use-package-always-ensure t)
+(setq use-package-always-ensure nil)
+(setq use-package-always-defer t)
 (setq gc-cons-threshold most-positive-fixnum)
 (setq-default indent-tabs-mode nil)
 
