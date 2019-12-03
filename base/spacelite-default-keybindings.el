@@ -15,7 +15,8 @@
   ;; spacelite/set-leader-keys-for-major-mode
   ;; spacelite/declare-prefix
   ;; spacelite/declare-prefix-for-mode
-  ;; global-set-key
+  ;; TODO: global-set-key
+  ;; evil-define-key
 
   ;; Some basic stuff
   (spacelite/set-leader-keys "!" 'shell-command)
@@ -105,6 +106,10 @@
   )
 
 (defun prompt-desc-check (inp-prompt check-f err-prompt)
+  "Prompts the user with text from inp-prompt,
+   Runs their input through check-f,
+   if check_f passes, return user input,
+   else ask the user again."
   (interactive)
   (let ((val (read-string inp-prompt)))
     (if (funcall check-f val)
@@ -115,6 +120,7 @@
   )
 
 (defun spacelite/create-spacelite-keybinding ()
+  "Creates a default keybinding interactively via prompts in your default keybindings file."
   (interactive)
   (let ((func (prompt-desc-check
                "Please provide a function name: "
@@ -129,6 +135,114 @@
         (beginning-of-buffer)
         (search-forward "(defun spacelite/init-default-keybindings ()")
         (insert (concat "\n(spacelite/set-leader-keys \"" keys "\" '" func ")"))
+        (spacelite/reload-keybindings)
+        )
+      )
+    )
+  )
+
+
+(defun spacelite/create-spacelite-prefix ()
+  "Creates a default prefix interactively via prompts in your default keybindings file."
+  (interactive)
+  (let ((prefix (prompt-desc-check
+                 "Please provide a prefix keysequence: "
+                 (lambda (x) t)
+                 ""))
+        (label (prompt-desc-check
+                "Please provide a prefix label: "
+                (lambda (x) t)
+                "")))
+    (save-excursion
+      (with-current-buffer (find-file-noselect "~/.emacs.d/base/spacelite-default-keybindings.el")
+        (beginning-of-buffer)
+        (search-forward "(defun spacelite/init-default-keybindings ()")
+        (insert (concat "\n(spacelite/declare-prefix \"" prefix "\" \"" label "\")"))
+        (spacelite/reload-keybindings)
+        )
+      )
+    )
+  )
+
+
+(defun spacelite/create-spacelite-keybinding-for-major-mode ()
+  "Creates a spacelite keybinding for a mode interactively via prompts in your default keybindings file."
+  (interactive)
+  (let ((func (prompt-desc-check
+               "Please provide a function name: "
+               (lambda (x) (fboundp (intern x)))
+               "Function does not exist, try again."))
+        (mode (prompt-desc-check
+               "Please provide a major mode: "
+               (lambda (x) (boundp (intern x))
+                 "")))
+        (keys (prompt-desc-check
+               "Please provide a key sequence: "
+               (lambda (x) t)
+               "")))
+    (save-excursion
+      (with-current-buffer (find-file-noselect "~/.emacs.d/base/spacelite-default-keybindings.el")
+        (beginning-of-buffer)
+        (search-forward "(defun spacelite/init-default-keybindings ()")
+        (insert (concat "\n(spacelite/set-leader-keys-for-major-mode '" mode " \"" keys "\" '" func ")"))
+        (spacelite/reload-keybindings)
+        )
+      )
+    )
+  )
+
+
+(defun spacelite/create-spacelite-prefix-for-major-mode ()
+  "Creates a prefix for a mode interactively via prompts in your default keybindings file."
+  (interactive)
+  (let ((prefix (prompt-desc-check
+                 "Please provide a prefix keysequence: "
+                 (lambda (x) (fboundp (intern x)))
+                 "Function does not exist, try again."))
+        (mode (prompt-desc-check
+               "Please provide a major mode: "
+               (lambda (x) (boundp (intern x))
+                 "")))
+        (label (prompt-desc-check
+                "Please provide a prefix label: "
+                (lambda (x) t)
+                "")))
+    (save-excursion
+      (with-current-buffer (find-file-noselect "~/.emacs.d/base/spacelite-default-keybindings.el")
+        (beginning-of-buffer)
+        (search-forward "(defun spacelite/init-default-keybindings ()")
+        (insert (concat "\n(spacelite/declare-prefix-for-mode '" mode " \"" prefix "\" \"" label "\")"))
+        (spacelite/reload-keybindings)
+        )
+      )
+    )
+  )
+
+
+(defun spacelite/create-evil-keybinding ()
+  "Creates an evil keybinding via prompts in your default keybindings file."
+  (interactive)
+  (let ((func (prompt-desc-check
+               "Please provide a function name: "
+               (lambda (x) (fboundp (intern x)))
+               "Function does not exist, try again."))
+        (state (prompt-desc-check
+                "Please provide an evil state: "
+                (lambda (x) (member x '(normal visual insert)))
+                ""))
+        (mode-map (prompt-desc-check
+                   "Please provide a mode map: "
+                   (lambda (x) (boundp (intern x))
+                     "")))
+        (keys (prompt-desc-check
+               "Please provide a key: "
+               (lambda (x) t)
+               "")))
+    (save-excursion
+      (with-current-buffer (find-file-noselect "~/.emacs.d/base/spacelite-default-keybindings.el")
+        (beginning-of-buffer)
+        (search-forward "(defun spacelite/init-default-keybindings ()")
+        (insert (concat "\n(evil-define-key '" state " " mode-map " \"" keys "\" '" func ")"))
         (spacelite/reload-keybindings)
         )
       )

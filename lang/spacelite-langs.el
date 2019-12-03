@@ -16,15 +16,16 @@
 (require 'cloudformation)
 (require 'spacelite-python)
 (require 'spacelite-elisp)
+(require 'spacelite-nix-mode)
 
 (defun lazy-load (mode f)
   (add-hook mode f)
 
   ;; Remove the hook on first load
   (add-hook mode `(lambda ()
-                   (when (member (quote ,f) ,mode)
-                     (remove-hook (quote ,mode) (quote ,f)))
-                   )
+                    (when (member (quote ,f) ,mode)
+                      (remove-hook (quote ,mode) (quote ,f)))
+                    )
             )
   )
 
@@ -40,5 +41,7 @@
   (lazy-load 'emacs-lisp-mode-hook 'spacelite/init-elisp)
   (lazy-load 'org-mode-hook 'writing/init)
   (lazy-load 'text-mode-hook 'writing/init)
+  (lazy-load 'nix-mode-hook 'spacelite/init-nix-mode)
   )
+
 (provide 'spacelite-langs)
