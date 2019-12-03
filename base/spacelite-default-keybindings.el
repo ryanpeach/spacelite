@@ -42,8 +42,13 @@
   (spacelite/set-leader-keys "er" 'spacelite/reload-init)
 
   (spacelite/declare-prefix "ek" "keybindings")
-  (spacelite/set-leader-keys "eks" 'spacelite/create-spacelite-keybinding)
-  (spacelite/set-leader-keys "ekk" 'spacelite/goto-keybindings-file)
+  (spacelite/set-leader-keys "ekk" 'spacelite/create-spacelite-keybinding)
+  (spacelite/set-leader-keys "ekp" 'spacelite/create-spacelite-prefix)
+  (spacelite/set-leader-keys "eke" 'spacelite/create-evil-keybinding)
+  (spacelite/declare-prefix "ek," "mode-keybindings")
+  (spacelite/set-leader-keys "ek,k" 'spacelite/create-spacelite-keybinding-for-major-mode)
+  (spacelite/set-leader-keys "ek,p" 'spacelite/create-spacelite-prefix-for-major-mode)
+  (spacelite/set-leader-keys "ekK" 'spacelite/goto-keybindings-file)
   (spacelite/set-leader-keys "ekr" 'spacelite/reload-keybindings)
 
   (spacelite/declare-prefix "h" "help")
