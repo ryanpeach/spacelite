@@ -50,12 +50,13 @@
     )
   )
 
-(defun rustlang/init ()
+(defun spacelite/init-rustlang ()
   (use-package racer
     :defer t)
 
   ;; Comment with ;
   (evil-define-key 'normal rust-mode-map (kbd ";") 'comment-line)
+  (evil-define-key 'normal rust-mode-map (kbd "C-;") (lambda () (insert ";")))
 
   ;; Flycheck
   (use-package
@@ -150,4 +151,4 @@
     )
   )
 
-(provide 'rustlang)
+(provide 'spacelite-rustlang)

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: use pyo3
+# key: use pyo3
+# --
+extern crate pyo3;
+use pyo3::prelude::*;
+use pyo3::exceptions as exc;

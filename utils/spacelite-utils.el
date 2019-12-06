@@ -1,3 +1,4 @@
+(require 'spacelite-multi-cursor)
 (require 'spacelite-yasnippet)
 (require 'spacelite-org)
 (require 'spacelite-google)
@@ -6,6 +7,7 @@
 (require 'spacelite-evil-easymotion)
 
 (defun spacelite/init-utils ()
+  (spacelite/init-multi-cursor)
   (spacelite/init-yasnippet)
   (spacelite/init-org)
   (spacelite/init-google)

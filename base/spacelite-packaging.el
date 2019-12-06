@@ -39,10 +39,12 @@
 (defun spacelite/add-file-to-spacelite ()
   "Used for adding packages to the proper locations within spacelite."
   (interactive)
+  (use-package s
+    :demand t)
   (let ((file (spacelite//get-header-file-name))
         (package-name (spacelite//get-this-package-name))
         (init-function-name (spacelite//get-init-function-name)))
-    (let ((mode-hook (if (endswith package-name "-mode")
+    (let ((mode-hook (if (s-suffix? package-name "-mode")
                          (concat package-name "-hook")
                        (concat package-name "-mode-hook"))))
       (save-excursion (with-current-buffer (find-file-noselect (print file))
@@ -67,5 +69,15 @@
                       (replace-regexp (concat "(lazy-load '.* '" init-function-name ")") "")
                       (save-buffer)
                       (load-file user-init-file)))))
+
+(defun spacelite/reload-this-file ()
+  "Reloads a file interactively and then reinits it"
+  (interactive)
+  (let ((file (buffer-file-name))
+        (init-function-name (spacelite//get-init-function-name)))
+    (save-buffer)
+    (load-file file)
+    (funcall (intern init-function-name))
+    ))
 
 (provide 'spacelite-packaging)

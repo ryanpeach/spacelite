@@ -30,8 +30,7 @@
 
   ;; Tabs
   (spacelite/declare-prefix "TAB" "indent")
-  (spacelite/set-leader-keys "TAB TAB" 'indent-region)
-  (spacelite/set-leader-keys "TAB DEL" 'indent-region)
+  (spacelite/set-leader-keys "TAB TAB" 'indent-rigidly)
   (spacelite/set-leader-keys "TAB l" 'indent-rigidly-right)
   (spacelite/set-leader-keys "TAB L" 'indent-rigidly-right-to-tab-stop)
   (spacelite/set-leader-keys "TAB h" 'indent-rigidly-left)
@@ -39,7 +38,9 @@
 
   ;; Emacs
   (spacelite/declare-prefix "e" "emacs")
-  (spacelite/set-leader-keys "er" 'spacelite/reload-init)
+  (spacelite/set-leader-keys "ei" 'spacelite/reload-init)
+  (spacelite/set-leader-keys "er" 'spacelite/reload-this-file)
+  (spacelite/set-leader-keys "el" 'load-this-file)
 
   (spacelite/declare-prefix "ek" "keybindings")
   (spacelite/set-leader-keys "ekk" 'spacelite/create-spacelite-keybinding)

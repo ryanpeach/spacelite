@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: PyErr
+# key: PyErr
+# --
+Err(PyErr::new::<exc::$1, _>($2))
