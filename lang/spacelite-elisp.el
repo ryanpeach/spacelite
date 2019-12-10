@@ -19,10 +19,14 @@
       (whitespace-cleanup))))
 
 (defun spacelite/init-elisp ()
+  ;; Yas minor mode
+  (add-hook python-mode-hook #'lazy-yas-minor-mode)
+
   ;; i for interactive toggle
   (spacelite/set-leader-keys-for-major-mode 'emacs-lisp-mode "i" 'lisp-interaction-mode)
   (spacelite/set-leader-keys-for-major-mode 'lisp-mode "i" 'lisp-interaction-mode)
   (spacelite/set-leader-keys-for-major-mode 'lisp-interaction-mode "i" 'emacs-lisp-mode)
+
   ;; r for run
   (spacelite/set-leader-keys-for-major-mode 'emacs-lisp-mode "r" 'load-this-file)
   (spacelite/set-leader-keys-for-major-mode 'lisp-mode "r" 'load-this-file)
@@ -39,13 +43,13 @@
 
   (add-hook 'before-save-hook 'elisp-auto-format-on-save)
 
-  ;; (use-package aggressive-indent
-  ;;   :defer t
-  ;;   :init
-  ;;   (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode)
-  ;;   (add-hook 'lisp-mode-hook #'aggressive-indent-mode)
-  ;;   (add-hook 'lisp-interaction-mode-hook #'aggressive-indent-mode)
-  ;;   )
+  (use-package aggressive-indent
+    :defer t
+    :init
+    (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode)
+    (add-hook 'lisp-mode-hook #'aggressive-indent-mode)
+    (add-hook 'lisp-interaction-mode-hook #'aggressive-indent-mode)
+    )
 
   ;; (use-package lispy
   ;;   :defer t

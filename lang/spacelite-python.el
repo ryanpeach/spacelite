@@ -78,6 +78,8 @@
     :ensure t
     :init (elpy-enable)
 
+    (add-hook python-mode-hook #'lazy-yas-minor-mode)
+
     ;; TODO: Settings
     (setq elpy-rpc-python-command "python3")
 
@@ -114,6 +116,13 @@
       (add-hook 'elpy-mode-hook 'flycheck-mode))
     )
 
+  (use-package aggressive-indent
+    :defer t
+    :init
+    (add-hook 'python-mode-hook #'aggressive-indent-mode)
+    )
+
+  ;; (use-package lispy
   ;; (use-package
   ;;   ropemacs
   ;;   :defer t
