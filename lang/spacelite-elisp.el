@@ -20,7 +20,9 @@
 
 (defun spacelite/init-elisp ()
   ;; Yas minor mode
-  (add-hook python-mode-hook #'lazy-yas-minor-mode)
+  (add-hook 'emacs-lisp-mode-hook #'lazy-yas-minor-mode)
+  (add-hook 'lisp-mode-hook #'lazy-yas-minor-mode)
+  (add-hook 'lisp-interaction-mode-hook #'lazy-yas-minor-mode)
 
   ;; i for interactive toggle
   (spacelite/set-leader-keys-for-major-mode 'emacs-lisp-mode "i" 'lisp-interaction-mode)

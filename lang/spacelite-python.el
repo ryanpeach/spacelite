@@ -38,7 +38,6 @@
   (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 
   ;; Comment with ;
-  (evil-define-key 'normal python-mode-map (kbd ";") 'comment-line)
 
   ;; Flycheck
   (use-package
@@ -78,7 +77,8 @@
     :ensure t
     :init (elpy-enable)
 
-    (add-hook python-mode-hook #'lazy-yas-minor-mode)
+    (evil-define-key 'normal elpy-mode-map (kbd ";") 'comment-line)
+    (add-hook elpy-mode-hook #'lazy-yas-minor-mode)
 
     ;; TODO: Settings
     (setq elpy-rpc-python-command "python3")
@@ -110,18 +110,17 @@
     (spacelite/set-leader-keys-for-major-mode 'python-mode "*" 'elpy-goto-return)
 
 
+    (use-package aggressive-indent
+      :defer t
+      :init
+      (add-hook 'elpy-mode-hook #'aggressive-indent-mode)
+      )
+
     :config
     (when (load "flycheck" t t)
       (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
       (add-hook 'elpy-mode-hook 'flycheck-mode))
     )
-
-  (use-package aggressive-indent
-    :defer t
-    :init
-    (add-hook 'python-mode-hook #'aggressive-indent-mode)
-    )
-
   ;; (use-package lispy
   ;; (use-package
   ;;   ropemacs

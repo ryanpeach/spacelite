@@ -54,11 +54,6 @@
   (use-package racer
     :defer t)
 
-  (add-hook python-mode-hook #'lazy-yas-minor-mode)
-  ;; Comment with ;
-  (evil-define-key 'normal rust-mode-map (kbd ";") 'comment-line)
-  (evil-define-key 'normal rust-mode-map (kbd "C-;") (lambda () (insert ";")))
-
   ;; Flycheck
   (use-package
     flycheck
@@ -80,6 +75,21 @@
   (use-package rust-mode
     :defer t
     :init
+
+    ;; Aggressive indent
+    (use-package aggressive-indent
+      :defer t
+      :init
+      (add-hook 'rust-mode-hook #'aggressive-indent-mode)
+      )
+
+    ;; Yas mode
+    (add-hook rust-mode-hook #'lazy-yas-minor-mode)
+
+    ;; Comment with ;
+    (evil-define-key 'normal rust-mode-map (kbd ";") 'comment-line)
+    (evil-define-key 'normal rust-mode-map (kbd "C-;") (lambda () (insert ";")))
+
     ;; Add hooks and keybindings
     ;; Newline and indent on semicolon
     (evil-define-key 'insert rust-mode-map (kbd "RET") (lambda () (interactive)
@@ -149,13 +159,6 @@
     ;; Formatting
     (spacelite/set-leader-keys-for-major-mode 'rust-mode "cf" 'rustic-cargo-format)
 
-    )
-
-
-  (use-package aggressive-indent
-    :defer t
-    :init
-    (add-hook 'rust-mode-hook #'aggressive-indent-mode)
     )
 
   )

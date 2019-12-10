@@ -1,5 +1,5 @@
 (defun spacelite/init-org ()
-  (add-hook python-mode-hook #'lazy-yas-minor-mode)
+  (add-hook 'org-mode-hook #'lazy-yas-minor-mode)
   (use-package
     org
     :defer t

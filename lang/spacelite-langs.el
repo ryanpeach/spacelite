@@ -38,6 +38,7 @@
   (lazy-load 'rust-mode-hook 'spacelite/init-rustlang)
   (lazy-load 'yaml-mode-hook 'cloudformation/init)
   (lazy-load 'python-mode-hook 'spacelite/init-python)
+  (lazy-load 'elpy-mode-hook 'spacelite/init-python)
   (lazy-load 'emacs-lisp-mode-hook 'spacelite/init-elisp)
   (lazy-load 'org-mode-hook 'writing/init)
   (lazy-load 'text-mode-hook 'writing/init)
