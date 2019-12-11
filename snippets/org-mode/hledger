@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: hledger
+# key: hledger
+# --
+
+#+NAME: $1
+#+BEGIN_SRC hledger :noweb yes
+$2
+#+END_SRC

@@ -78,7 +78,7 @@
     :init (elpy-enable)
 
     (evil-define-key 'normal elpy-mode-map (kbd ";") 'comment-line)
-    (add-hook elpy-mode-hook #'lazy-yas-minor-mode)
+    (add-hook 'elpy-mode-hook #'lazy-yas-minor-mode)
 
     ;; TODO: Settings
     (setq elpy-rpc-python-command "python3")

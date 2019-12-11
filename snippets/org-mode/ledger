@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: ledger
+# key: ledger
+# --
+
+#+NAME: $1
+#+BEGIN_SRC ledger :noweb yes
+$2
+#+END_SRC

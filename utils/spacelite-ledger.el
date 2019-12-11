@@ -1,5 +1,5 @@
 (defun spacelite/init-ledger ()
-  (use-package hledger-mode
+  (use-package ledger-mode
     :defer t)
   )
 
