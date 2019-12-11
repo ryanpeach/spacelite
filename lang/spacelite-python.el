@@ -50,14 +50,14 @@
     :config
 
     (flycheck-define-checker
-        python-mypy ""
-        :command ("mypy"
-                  "--ignore-missing-imports"
-                  "--disallow-untyped-defs"
-                  source-original)
-        :error-patterns
-        ((error line-start (file-name) ":" line ": error:" (message) line-end))
-        :modes python-mode)
+     python-mypy ""
+     :command ("mypy"
+               "--ignore-missing-imports"
+               "--disallow-untyped-defs"
+               source-original)
+     :error-patterns
+     ((error line-start (file-name) ":" line ": error:" (message) line-end))
+     :modes python-mode)
 
     (add-to-list 'flycheck-checkers 'python-mypy t)
     (flycheck-add-next-checker 'python-pylint 'python-mypy t)
@@ -76,13 +76,6 @@
 
     ;; Comment with ;
     (add-hook 'python-mode-hook #'lazy-yas-minor-mode)
-
-    (use-package aggressive-indent
-      :defer t
-      :init
-      (add-hook 'python-mode-hook #'aggressive-indent-mode)
-      )
-
     (evil-define-key 'normal python-mode-map (kbd ";") 'comment-line)
 
     ;; Running / Compiling
