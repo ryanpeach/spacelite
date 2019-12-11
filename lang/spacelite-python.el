@@ -32,17 +32,10 @@
   )
 
 (defun spacelite/init-python ()
-  ;; TODO: Required for setting up your python environment
-  (setq python-shell-interpreter "ipython3")
-  (setq python-shell-interpreter-args "-i --simple-prompt")
-  (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
-
-  ;; Comment with ;
-
   ;; Flycheck
   (use-package
     flycheck
-    :defer t
+    :ensure t
     :init
 
     ;; TODO: Why doesn't the prefix work?
@@ -71,56 +64,69 @@
     (setq flycheck-check-syntax-automatically '(mode-enabled save))
     )
 
-  ;; Used for many python related tasks
-  (use-package
-    elpy
+
+  (use-package python
+    :mode ("\\.py" . python-mode)
     :ensure t
-    :init (elpy-enable)
+    :config
+    ;; TODO: Required for setting up your python environment
+    (setq python-shell-interpreter "ipython3")
+    (setq python-shell-interpreter-args "-i --simple-prompt")
+    (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 
-    (evil-define-key 'normal elpy-mode-map (kbd ";") 'comment-line)
-    (add-hook 'elpy-mode-hook #'lazy-yas-minor-mode)
+    ;; Comment with ;
+    (add-hook 'python-mode-hook #'lazy-yas-minor-mode)
 
-    ;; TODO: Settings
-    (setq elpy-rpc-python-command "python3")
+    (use-package aggressive-indent
+      :defer t
+      :init
+      (add-hook 'python-mode-hook #'aggressive-indent-mode)
+      )
+
+    (evil-define-key 'normal python-mode-map (kbd ";") 'comment-line)
 
     ;; Running / Compiling
     (spacelite/set-leader-keys-for-major-mode 'python-mode "c" 'python-mypy-run)
     (spacelite/set-leader-keys-for-major-mode 'python-mode "r" 'python-run)
     (spacelite/set-leader-keys-for-major-mode 'python-mode "," 'python-run-ensure-mypy)
 
-    ;; Unit Testing
-    ;; TODO: Use M-x elpy-set-test-runner to set up your test running environment
-    (defalias 'pytest 'elpy-test)
-    (spacelite/set-leader-keys-for-major-mode 'python-mode "t" 'pytest)
-
-    ;; Debugging
-    (spacelite/set-leader-keys-for-major-mode 'python-mode "b" 'elpy-pdb-toggle-breakpoint-at-point)
-    (spacelite/set-leader-keys-for-major-mode 'python-mode "d" 'elpy-pdb-debug-buffer)
-
-    ;; Formatting
-    (spacelite/set-leader-keys-for-major-mode 'python-mode "f" 'elpy-format-code)
-
-    ;; Profiling
-    (spacelite/set-leader-keys-for-major-mode 'python-mode "p" 'elpy-profile-buffer-or-region)
-
-    ;; Navigation
-    (defalias 'elpy-goto-return 'pop-tag-mark)
-    (spacelite/set-leader-keys-for-major-mode 'python-mode "." 'elpy-goto-definition)
-    (spacelite/set-leader-keys-for-major-mode 'python-mode ">" 'elpy-goto-definition-other-window)
-    (spacelite/set-leader-keys-for-major-mode 'python-mode "*" 'elpy-goto-return)
-
-
-    (use-package aggressive-indent
-      :defer t
+    ;; Used for many python related tasks
+    (use-package
+      elpy
+      :ensure t
       :init
-      (add-hook 'elpy-mode-hook #'aggressive-indent-mode)
-      )
+      ;; TODO: Settings
+      (setq elpy-rpc-python-command "python3")
 
-    :config
-    (when (load "flycheck" t t)
+      ;; Unit Testing
+      ;; TODO: Use M-x elpy-set-test-runner to set up your test running environment
+      (defalias 'pytest 'elpy-test)
+      (spacelite/set-leader-keys-for-major-mode 'python-mode "t" 'pytest)
+
+      ;; Debugging
+      (spacelite/set-leader-keys-for-major-mode 'python-mode "b" 'elpy-pdb-toggle-breakpoint-at-point)
+      (spacelite/set-leader-keys-for-major-mode 'python-mode "d" 'elpy-pdb-debug-buffer)
+
+      ;; Formatting
+      (spacelite/set-leader-keys-for-major-mode 'python-mode "f" 'elpy-format-code)
+
+      ;; Profiling
+      (spacelite/set-leader-keys-for-major-mode 'python-mode "p" 'elpy-profile-buffer-or-region)
+
+      ;; Navigation
+      (defalias 'elpy-goto-return 'pop-tag-mark)
+      (spacelite/set-leader-keys-for-major-mode 'python-mode "." 'elpy-goto-definition)
+      (spacelite/set-leader-keys-for-major-mode 'python-mode ">" 'elpy-goto-definition-other-window)
+      (spacelite/set-leader-keys-for-major-mode 'python-mode "*" 'elpy-goto-return)
+
+      :config
+      (remove-hook 'elpy-modules 'elpy-module-flymake) ;; <- This removes flymake from elpy
       (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
-      (add-hook 'elpy-mode-hook 'flycheck-mode))
+      (add-hook 'elpy-mode-hook 'flycheck-mode)
+      )
     )
+
+  (elpy-enable)
   ;; (use-package lispy
   ;; (use-package
   ;;   ropemacs
