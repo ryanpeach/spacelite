@@ -15,6 +15,8 @@
                         org-info
                         org-mhe
                         org-w3m))
+
+    (org-babel-load-languages (quote ((emacs-lisp . t) (ledger . t) (python . t))))
     )
   (use-package htmlize)
   (use-package
