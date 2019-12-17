@@ -15,8 +15,13 @@
                         org-info
                         org-mhe
                         org-w3m))
-
-    (org-babel-load-languages (quote ((emacs-lisp . t) (ledger . t) (python . t))))
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '((emacs-lisp . t)
+       (haskell . t)
+       (latex . t)
+       (ledger . t)         ;this is the important one for this tutorial
+       (python . t)))
     )
   (use-package htmlize)
   (use-package
