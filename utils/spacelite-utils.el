@@ -6,6 +6,7 @@
 (require 'spacelite-deft)
 (require 'spacelite-treemacs)
 (require 'spacelite-evil-easymotion)
+(require 'spacelite-string-inflection)
 
 (defun spacelite/init-utils ()
   (spacelite/init-ledger)
@@ -15,6 +16,8 @@
   (spacelite/init-google)
   (spacelite/init-deft)
   (spacelite/init-treemacs)
-  (spacelite/init-evil-easymotion))
+  (spacelite/init-evil-easymotion)
+  (spacelite/init-string-inflection)
+  )
 
 (provide 'spacelite-utils)
