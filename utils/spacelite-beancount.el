@@ -454,60 +454,61 @@ the smallest columns that will align all the numbers.  With a prefix argument,
 align with the fill-column."
   (interactive "r")
 
-  ;; With a prefix argument, align with the fill-column.
-  (when current-prefix-arg
-    (setq requested-currency-column fill-column))
+  (when (bound-and-true-p beancount-mode)
+    ;; With a prefix argument, align with the fill-column.
+    (when current-prefix-arg
+      (setq requested-currency-column fill-column))
 
-  ;; Loop once in the region to find the length of the longest string before the
-  ;; number.
-  (let (prefix-widths
-        number-widths
-        (number-padding "  "))
-    (beancount-for-line-in-region
-     begin end
-     (let ((line (thing-at-point 'line)))
-       (when (string-match (concat "\\(.*?\\)"
-                                   "[ \t]+"
-                                   "\\(" beancount-number-regexp "\\)"
-                                   "[ \t]+"
-                                   beancount-currency-regexp)
-                           line)
-         (push (length (match-string 1 line)) prefix-widths)
-         (push (length (match-string 2 line)) number-widths)
-         )))
+    ;; Loop once in the region to find the length of the longest string before the
+    ;; number.
+    (let (prefix-widths
+          number-widths
+          (number-padding "  "))
+      (beancount-for-line-in-region
+       begin end
+       (let ((line (thing-at-point 'line)))
+         (when (string-match (concat "\\(.*?\\)"
+                                     "[ \t]+"
+                                     "\\(" beancount-number-regexp "\\)"
+                                     "[ \t]+"
+                                     beancount-currency-regexp)
+                             line)
+           (push (length (match-string 1 line)) prefix-widths)
+           (push (length (match-string 2 line)) number-widths)
+           )))
 
-    (when prefix-widths
-      ;; Loop again to make the adjustments to the numbers.
-      (let* ((number-width (apply 'max number-widths))
-             (number-format (format "%%%ss" number-width))
-             ;; Compute rightmost column of prefix.
-             (max-prefix-width (apply 'max prefix-widths))
-             (max-prefix-width
-              (if requested-currency-column
-                  (max (- requested-currency-column (length number-padding) number-width 1)
-                       max-prefix-width)
-                max-prefix-width))
-             (prefix-format (format "%%-%ss" max-prefix-width))
-             )
+      (when prefix-widths
+        ;; Loop again to make the adjustments to the numbers.
+        (let* ((number-width (apply 'max number-widths))
+               (number-format (format "%%%ss" number-width))
+               ;; Compute rightmost column of prefix.
+               (max-prefix-width (apply 'max prefix-widths))
+               (max-prefix-width
+                (if requested-currency-column
+                    (max (- requested-currency-column (length number-padding) number-width 1)
+                         max-prefix-width)
+                  max-prefix-width))
+               (prefix-format (format "%%-%ss" max-prefix-width))
+               )
 
-        (beancount-for-line-in-region
-         begin end
-         (let ((line (thing-at-point 'line)))
-           (when (string-match (concat "^\\([^\"]*?\\)"
-                                       "[ \t]+"
-                                       "\\(" beancount-number-regexp "\\)"
-                                       "[ \t]+"
-                                       "\\(.*\\)$")
-                               line)
-             (delete-region (line-beginning-position) (line-end-position))
-             (let* ((prefix (match-string 1 line))
-                    (number (match-string 2 line))
-                    (rest (match-string 3 line)) )
-               (insert (format prefix-format prefix))
-               (insert number-padding)
-               (insert (format number-format number))
-               (insert " ")
-               (insert rest)))))))))
+          (beancount-for-line-in-region
+           begin end
+           (let ((line (thing-at-point 'line)))
+             (when (string-match (concat "^\\([^\"]*?\\)"
+                                         "[ \t]+"
+                                         "\\(" beancount-number-regexp "\\)"
+                                         "[ \t]+"
+                                         "\\(.*\\)$")
+                                 line)
+               (delete-region (line-beginning-position) (line-end-position))
+               (let* ((prefix (match-string 1 line))
+                      (number (match-string 2 line))
+                      (rest (match-string 3 line)) )
+                 (insert (format prefix-format prefix))
+                 (insert number-padding)
+                 (insert (format number-format number))
+                 (insert " ")
+                 (insert rest))))))))))
 
 
 (defun beancount-align-to-previous-number ()
@@ -602,9 +603,11 @@ Only useful if you have not installed Beancount properly in your PATH.")
 (defun beancount-check ()
   "Run `beancount-check-program'."
   (interactive)
-  (let ((compilation-read-command nil))
-    (beancount--run beancount-check-program
-                    (file-relative-name buffer-file-name))))
+  (when (bound-and-true-p beancount-mode)
+    (let ((compilation-read-command nil))
+      (beancount--run beancount-check-program
+                      (file-relative-name buffer-file-name))))
+  )
 
 (defvar beancount-query-program "bean-query"
   "Program to run to run just the parser and validator on an
@@ -648,6 +651,15 @@ Only useful if you have not installed Beancount properly in your PATH.")
   (call-process beancount-price-program nil t nil
                 (file-relative-name buffer-file-name)))
 
+
+;; My custom edits
+(add-hook 'find-file-hook
+          (lambda ()
+            (when (string= (file-name-extension buffer-file-name) "beancount")
+              (beancount-mode +1))))
+(add-to-list 'auto-mode-alist '("\\.beancount\\'" . org-mode))
+(add-hook 'before-save-hook 'beancount-align-numbers)
+(add-hook 'before-save-hook 'beancount-check)
 
 (provide 'spacelite-beancount)
 ;;; beancount.el ends here
