@@ -7,6 +7,7 @@
 (require 'spacelite-treemacs)
 (require 'spacelite-evil-easymotion)
 (require 'spacelite-string-inflection)
+(require 'spacelite-beancount)
 
 (defun spacelite/init-utils ()
   (spacelite/init-ledger)
