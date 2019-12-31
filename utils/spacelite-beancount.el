@@ -659,7 +659,8 @@ Only useful if you have not installed Beancount properly in your PATH.")
               (beancount-mode +1))))
 (add-to-list 'auto-mode-alist '("\\.beancount\\'" . org-mode))
 (add-hook 'before-save-hook 'beancount-align-numbers)
-(add-hook 'before-save-hook 'beancount-check)
+;; TODO
+;; (add-hook 'before-save-hook 'beancount-check)
 
 (provide 'spacelite-beancount)
 ;;; beancount.el ends here
