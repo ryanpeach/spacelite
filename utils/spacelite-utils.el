@@ -8,6 +8,7 @@
 (require 'spacelite-evil-easymotion)
 (require 'spacelite-string-inflection)
 (require 'spacelite-beancount)
+(require 'nix-update)
 
 (defun spacelite/init-utils ()
   (spacelite/init-ledger)
