@@ -22,10 +22,9 @@
   (spacelite/set-leader-keys "!" 'shell-command)
   (spacelite/set-leader-keys "bs" 'save-buffer)
   (spacelite/set-leader-keys "fs" 'save-buffer)
-  (spacelite/set-leader-keys "pg" 'helm-grep-do-git-grep)
-  (spacelite/set-leader-keys "p/" 'helm-grep-do-git-grep)
-  (spacelite/set-leader-keys "f/" 'helm-grep-do-git-grep)
-  (spacelite/set-leader-keys "/" 'helm-grep-do-git-grep)
+  (spacelite/set-leader-keys "p/" 'helm-projectile-ag)
+  (spacelite/set-leader-keys "f/" 'helm-ag-this-file)
+  (spacelite/set-leader-keys "/" 'helm-ag)
   (spacelite/set-leader-keys ";" 'comment-region)
 
   ;; Tabs
