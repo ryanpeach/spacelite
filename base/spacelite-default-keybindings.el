@@ -25,7 +25,7 @@
   (spacelite/set-leader-keys "p/" 'helm-projectile-ag)
   (spacelite/set-leader-keys "f/" 'helm-ag-this-file)
   (spacelite/set-leader-keys "/" 'helm-ag)
-  (spacelite/set-leader-keys ";" 'comment-region)
+  (spacelite/set-leader-keys ";" 'comment-or-uncomment-region)
 
   ;; Tabs
   (spacelite/declare-prefix "TAB" "indent")
