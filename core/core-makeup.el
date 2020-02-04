@@ -33,7 +33,7 @@
   (toggle-scroll-bar -1)
 
   ;; font
-  (set-face-attribute 'default t :font "Inconsolata for Powerline")
+  ;; (set-face-attribute 'default t :font "Inconsolata for Powerline")
 
   ;; set always fullscreen
   ;; (set-frame-parameter nil 'fullscreen 'fullboth)
