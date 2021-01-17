@@ -2,8 +2,11 @@
   (use-package evil-mc
     :ensure t
     :defer t
+    :after evil
     :init
     (global-evil-mc-mode 1)
+    :config
+    (evil-global-set-key 'normal [escape] 'evil-mc-undo-all-cursors)
     )
   )
 
