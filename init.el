@@ -33,7 +33,7 @@
 (setq gc-cons-threshold most-positive-fixnum)
 (setq-default indent-tabs-mode nil)
 
-(require 'config)
+(require 'user-config)
 (require 'core-spacelite)
 (require 'spacelite-base)
 (require 'spacelite-langs)
