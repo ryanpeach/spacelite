@@ -1,4 +1,5 @@
 ;; (package-initialize)
+(toggle-debug-on-error)
 
 (require 'server)
 (or (server-running-p)

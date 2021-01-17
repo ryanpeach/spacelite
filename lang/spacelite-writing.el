@@ -1,5 +1,6 @@
 ;; Writing
 (defun spacelite/init-writing ()
+  (spacelite/declare-prefix "o" "writing")
   (spacelite/set-leader-keys
     "od" 'writing/wcdiff
     "of" 'writing/wcfile
@@ -17,11 +18,11 @@
   ;; If you turn flyspell on, still only spell comments
   ;; REF: https://emacs.stackexchange.com/questions/31300/can-you-turn-on-flyspell-for-comments-but-not-strings
   (setq flyspell-prog-text-faces
-	(delq 'font-lock-string-face
-	      flyspell-prog-text-faces))
+        (delq 'font-lock-string-face
+              flyspell-prog-text-faces))
 
   )
-  
+
 ;; Literary Functions
 ;; REF: https://www.emacswiki.org/emacs/WordCount
 (defun writing/wcproj ()

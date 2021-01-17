@@ -19,6 +19,7 @@
   ;; evil-define-key
 
   ;; Some basic stuff
+  (spacelite/declare-prefix "/" "find")
   (spacelite/set-leader-keys "!" 'shell-command)
   (spacelite/set-leader-keys "bs" 'save-buffer)
   (spacelite/set-leader-keys "fs" 'save-buffer)

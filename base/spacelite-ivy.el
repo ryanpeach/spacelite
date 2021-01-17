@@ -23,6 +23,7 @@
   (spacelite/set-leader-keys
     "<SPC>" 'counsel-M-x
     "ff"    'counsel-find-file
+    "bb"    'counsel-switch-buffer
     "//"    'counsel-ag
     )
   (global-set-key (kbd "M-x") 'counsel-M-x)
