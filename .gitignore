@@ -1,4 +1,5 @@
 # -*- mode: gitignore; -*-
+config.el
 .swp
 elpy
 transient
