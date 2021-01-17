@@ -1,4 +1,3 @@
-(require 'spacelite-ledger)
 (require 'spacelite-multi-cursor)
 (require 'spacelite-yasnippet)
 (require 'spacelite-org)
@@ -7,11 +6,8 @@
 (require 'spacelite-treemacs)
 (require 'spacelite-evil-easymotion)
 (require 'spacelite-string-inflection)
-(require 'spacelite-beancount)
-(require 'nix-update)
 
 (defun spacelite/init-utils ()
-  (spacelite/init-ledger)
   (spacelite/init-multi-cursor)
   (spacelite/init-yasnippet)
   (spacelite/init-org)
