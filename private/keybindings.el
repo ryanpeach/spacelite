@@ -24,7 +24,6 @@
   (global-set-key (kbd "C-'") 'split-window-horizontally)
   (global-set-key (kbd "C-5") 'split-window-vertically)
 
-  ;; Ctrl motion of buffers
   ;; TODO: Make it loop
   (defun other-window-backward ()
     "Select the previous window."
@@ -33,10 +32,6 @@
     )
   (global-set-key (kbd "C-<tab>") 'other-window)
   (global-set-key (kbd "C-S-<tab>") 'other-window-backward)
-
-  ;; Tmux keybindings
-  (spacemacs/set-leader-keys "w\"" 'split-window-horizontally)
-  (spacemacs/set-leader-keys "w%" 'split-window-vertically)
 
   ;; Pycharm keybindings
   (global-set-key (kbd "C-s") 'save-buffer)

@@ -27,6 +27,8 @@
 
 (load-file (concat (file-name-directory user-emacs-directory)
                    "core/core-load-paths.el"))
+(load-file (concat (file-name-directory user-emacs-directory)
+                   "config.el"))
 
 (setq use-package-always-ensure t)
 ;; (setq use-package-always-defer t)
