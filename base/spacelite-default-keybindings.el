@@ -67,8 +67,9 @@
     "9" 'win-9
 
     ;; Tmux like split windows
+    "wd" 'spacelite/delete-window-and-resize
     "w%" 'split-window-vertically
-    "w\"" 'split-window-horizontally
+    "w\"" 'spacelite/split-window-right-and-resize
 
     ;; Help keys
     "ha" 'apropos

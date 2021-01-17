@@ -35,4 +35,30 @@
   (split-window-right) 
   (windmove-right))
 
+; Resize frame when opening new windows hor1izontally
+(defun spacelite/delete-other-windows-and-resize ()
+  "delete and reset width"
+  (interactive)
+  (when window-system
+    (progn (set-frame-width (selected-frame) default-window-width)
+           (delete-other-windows))))
+
+(defun spacelite/delete-window-and-resize ()
+  "delete this window and reset width"
+  (interactive)
+  (when window-system
+    (progn (delete-window)
+           (set-frame-width (selected-frame)
+                            (- (frame-width) default-window-width 1))
+           (balance-windows))))
+
+(defun spacelite/split-window-right-and-resize ()
+  "split and increase width"
+  (interactive)
+  (when window-system
+    (progn (set-frame-width (selected-frame)
+			     (+ (frame-width) default-window-width 1))
+	    (split-window-right)
+	    (balance-windows))))
+
 (provide 'spacelite-windows)
