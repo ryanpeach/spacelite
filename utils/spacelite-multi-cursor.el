@@ -6,7 +6,10 @@
     :init
     (global-evil-mc-mode 1)
     :config
-    (evil-global-set-key 'normal [escape] 'evil-mc-undo-all-cursors)
+    (progn
+      (evil-global-set-key 'normal [escape] 'evil-mc-undo-all-cursors)
+      (evil-global-set-key 'normal (kbd "C-S-<mouse-1>") 'evil-mc-make-cursor-on-click)
+      )
     )
   )
 
@@ -15,8 +18,6 @@
   (interactive "e")
   (progn
     (evil-mc-make-cursor-here)
-    (mouse-set-point event)
-    (evil-mc-make-cursor-here)))
-(global-set-key (kbd "C-S-<mouse-1>") 'evil-mc-make-cursor-on-click)
+    (mouse-set-point event)))
 
 (provide 'spacelite-multi-cursor)
