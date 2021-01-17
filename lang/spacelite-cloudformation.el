@@ -1,6 +1,6 @@
 ;; Cloudformation
 
-(defun cloudformation/init ()
+(defun spacelite-cloudformation/init ()
      ;; REF: https://www.emacswiki.org/emacs/CfnLint
      ;; Set up a mode for JSON based templates
      (define-derived-mode cfn-json-mode js-mode
@@ -46,4 +46,4 @@
        (add-hook 'cfn-yaml-mode-hook 'flycheck-mode))
      )
 
-(provide 'cloudformation)
+(provide 'spacelite-cloudformation)

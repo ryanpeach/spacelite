@@ -1,4 +1,5 @@
 # -*- mode: gitignore; -*-
+.swp
 elpy
 transient
 network-security.data

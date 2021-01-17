@@ -1,5 +1,5 @@
 ;; Writing
-(defun writing/init ()
+(defun spacelite/init-writing ()
   (spacelite/set-leader-keys
     "od" 'writing/wcdiff
     "of" 'writing/wcfile
@@ -72,4 +72,4 @@
       (switch-to-buffer ind-buf)
       (windmove-right))))
 
-(provide 'writing)
+(provide 'spacelite-writing)

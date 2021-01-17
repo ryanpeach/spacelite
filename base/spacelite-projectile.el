@@ -26,16 +26,17 @@
     projectile 
     :diminish 'projectile-mode) 
   (use-package 
-    helm-projectile) 
-  (setq projectile-completion-system 'helm projectile-sort-order 'recentf
+    counsel-projectile
+    :diminish 'ivy-mode) 
+  (setq projectile-completion-system 'ivy projectile-sort-order 'recentf
 	projectile-globally-ignored-directories (append '(".cache")))
   (spacelite/set-leader-keys
     "pbd" 'projectile-kill-buffers
-    "pf" 'helm-projectile-find-file
-    "ph" 'helm-projectile
-    "pl" 'helm-projectile-switch-project
-    "p/" 'helm-projectile-ag
-    "pr" 'helm-projectile-recentf) 
+    "pf" 'counsel-projectile-find-file
+    "ph" 'counsel-projectile
+    "pl" 'counsel-projectile-switch-project
+    "p//" 'counsel-projectile-ag
+  )
   (projectile-global-mode))
 
 (provide 'spacelite-projectile)

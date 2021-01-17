@@ -70,7 +70,7 @@
     :ensure t
     :config
     ;; TODO: Required for setting up your python environment
-    (setq python-shell-interpreter "ipython3")
+    (setq python-shell-interpreter "ipython")
     (setq python-shell-interpreter-args "-i --simple-prompt")
     (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 
